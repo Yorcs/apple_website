@@ -7,6 +7,7 @@ import { yellowImg } from "../utils"
 import * as THREE from "three"
 import { Canvas } from "@react-three/fiber"
 import { View } from "@react-three/drei"
+import { models, sizes } from "../constants"
 
 const Model = () => {
   const [size, setSize] = useState("small")
@@ -75,9 +76,29 @@ const Model = () => {
                 right: 0,
                 overflow: "hidden",
               }}
+              eventSource={document.getElementById("root")}
             >
               <View.Port />
             </Canvas>
+          </div>
+
+          <div className="mx-auto w-full">
+            <p className="mb-5 text-center text-sm font-light">{model.title}</p>
+
+            <div className="flex-center">
+              <ul className="color-container">
+                {models.map((item, i) => (
+                  <li
+                    key={i}
+                    className="mx-2 h-6 w-6 rounded-full"
+                    style={{
+                      backgroundColor: item.color[0],
+                    }}
+                    onClick={() => setModel(item)}
+                  />
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
