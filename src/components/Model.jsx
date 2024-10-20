@@ -90,7 +90,7 @@ const Model = () => {
                 {models.map((item, i) => (
                   <li
                     key={i}
-                    className="mx-2 h-6 w-6 rounded-full"
+                    className="mx-2 h-6 w-6 cursor-pointer rounded-full"
                     style={{
                       backgroundColor: item.color[0],
                     }}
@@ -98,6 +98,22 @@ const Model = () => {
                   />
                 ))}
               </ul>
+
+              <button className="size-btn-container">
+                {sizes.map(({ label, value }) => (
+                  <span
+                    key={label}
+                    className="size-btn"
+                    style={{
+                      backgroundColor: size === value ? "white" : "transparent",
+                      color: size === value ? "black" : "white",
+                    }}
+                    onClick={() => setSize(value)}
+                  >
+                    {label}
+                  </span>
+                ))}
+              </button>
             </div>
           </div>
         </div>
