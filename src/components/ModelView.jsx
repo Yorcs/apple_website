@@ -1,4 +1,5 @@
-import { PerspectiveCamera, View } from "@react-three/drei"
+import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei"
+import * as THREE from "three"
 import Lights from "./Lights"
 import IPhone from "./IPhone"
 import { Suspense } from "react"
@@ -16,7 +17,7 @@ const ModelView = ({
     <View
       index={index}
       id={gsapType}
-      className={`h-full w-full border-2 border-red-500 ${index === 2} ? 'right-[-100%]: ''`}
+      className={`h-full w-full ${index === 2} ? 'right-[-100%]: ''`}
     >
       {/*Ambient Light */}
       <ambientLight intensity={0.3} />
@@ -24,9 +25,29 @@ const ModelView = ({
 
       <Lights />
 
-      <Suspense>
-        <IPhone />
-      </Suspense>
+      <OrbitControls
+        makeDefault
+        ref={controlRef}
+        enableZoom={false}
+        enablePan={false}
+        rotateSpeed={0.4}
+        target={new THREE.Vector3(0, 0, 0)}
+        onEnd={() => setRotationsState(controlRef.current.getAzimuthalAngle())}
+      />
+
+      <group
+        ref={groupRef}
+        name={`${index === 1} ? 'small' : 'large'`}
+        position={[0, 0, 0]}
+      >
+        <Suspense>
+          <IPhone
+            scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
+            item={item}
+            size={size}
+          />
+        </Suspense>
+      </group>
     </View>
   )
 }
