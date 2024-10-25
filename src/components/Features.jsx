@@ -70,6 +70,8 @@ const Features = () => {
                     alt="titanium"
                     className="feature-video g_grow"
                   />
+                </div>
+                <div className="h-[50vh] flex-1 overflow-hidden">
                   <img
                     src={explore2Img}
                     alt="titanium 2"
