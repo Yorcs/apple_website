@@ -2,7 +2,7 @@
 
 ## Overview
 
-Tools: React | ThreeJS
+Tools: React | ThreeJS | TailwindCSS
 
 
 
